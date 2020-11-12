@@ -5,5 +5,9 @@ local tokens=(${(z)LBUFFER})
 if [[ $#tokens == 1 ]]; then
   zle fzf-auto-snippet 1
 else
+  if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
+    zle _expand_alias
+    zle expand-word
+  fi
   zle self-insert
 fi
